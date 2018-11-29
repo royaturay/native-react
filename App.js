@@ -42,23 +42,19 @@ export default class HelloWorldApp extends Component {
       uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
     };
     return (
-        <View style={{alignItems: 'center',height: 300, backgroundColor: 'red' }}>
-          <View style={{flex: 1, backgroundColor: 'steelblue'}} >
-            <Text>Hello world!</Text>
-            <Image source={pic} style={{width: 193, height: 110}} />
-          </View>
-          <View style={{flex: 2, backgroundColor: 'skyblue'}} >
-            <Greeting name='Rexxar' />
-            <Greeting name='Jaina' />
-            <Greeting name='Valeera' />
-          </View>
-          <View style={{flex: 3, backgroundColor: 'steelblue'}} >
-            <Blink style={styles.bigblue} text='I love to blink' />
-            <Blink style={[styles.bigblue, styles.red]} text='Yes blinking is so great' />
-            <Blink style={[styles.red, styles.bigblue]} text='Why did they ever take this out of HTML' />
-            <Blink style={[styles.red, styles.bigblue]} text='Look at me look at me look at me' />
-          </View>
-        </View>
+      // 尝试把`flexDirection`改为`column`看看 預設為 column (row、column)
+      // 尝试把`justifyContent`改为`center`看看(flex-start、center、flex-end、space-around、space-between以及space-evenly)
+      // 尝试把`alignItems`改为`flex-start`看看(flex-start、center、flex-end以及stretch)
+      <View style={{
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        alignItems: 'stretch',
+      }}>
+        <View style={{flex: 1, backgroundColor: 'powderblue'}} />
+        <View style={{flex: 2, backgroundColor: 'skyblue'}} />
+        <View style={{flex: 3, backgroundColor: 'steelblue'}} />
+      </View>
     );
   }
 }
