@@ -1,49 +1,75 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React, { Component } from 'react';
+import { AppRegistry, StyleSheet, Text, View, Image } from 'react-native';
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
-type Props = {};
-export default class App extends Component<Props> {
+class Greeting extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+      <View style={{alignItems: 'center'}}>
+        <Text>Hello {this.props.name}!</Text>
       </View>
+    );
+  }
+}
+class Blink extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { isShowingText: true };
+
+    // 每1000毫秒对showText状态做一次取反操作
+    setInterval(() => {
+      this.setState(previousState => {
+        return { isShowingText: !previousState.isShowingText };
+      });
+    }, 1000);
+  }
+
+  render() {
+    // 根据当前showText的值决定是否显示text内容
+    if (!this.state.isShowingText) {
+      return null;
+    }
+
+    return (
+      <Text style={this.props.style}>{this.props.text}</Text>
+    );
+  }
+}
+
+export default class HelloWorldApp extends Component {
+  render() {
+    let pic = {
+      uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+    };
+    return (
+        <View style={{alignItems: 'center',height: 300, backgroundColor: 'red' }}>
+          <View style={{flex: 1, backgroundColor: 'steelblue'}} >
+            <Text>Hello world!</Text>
+            <Image source={pic} style={{width: 193, height: 110}} />
+          </View>
+          <View style={{flex: 2, backgroundColor: 'skyblue'}} >
+            <Greeting name='Rexxar' />
+            <Greeting name='Jaina' />
+            <Greeting name='Valeera' />
+          </View>
+          <View style={{flex: 3, backgroundColor: 'steelblue'}} >
+            <Blink style={styles.bigblue} text='I love to blink' />
+            <Blink style={[styles.bigblue, styles.red]} text='Yes blinking is so great' />
+            <Blink style={[styles.red, styles.bigblue]} text='Why did they ever take this out of HTML' />
+            <Blink style={[styles.red, styles.bigblue]} text='Look at me look at me look at me' />
+          </View>
+        </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+  bigblue: {
+    color: 'blue',
+    fontWeight: 'bold',
+    fontSize: 30,
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  red: {
+    color: 'red',
   },
 });
