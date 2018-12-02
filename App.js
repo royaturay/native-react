@@ -9,21 +9,21 @@ export default class FetchExample extends React.Component {
   }
 
   componentDidMount(){
-    return fetch('https://facebook.github.io/react-native/movies.json')
-      .then((response) => response.json())
-      .then((responseJson) => {
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = e => {
+      if (request.readyState !== 4) {
+        return;
+      }
 
-        this.setState({
-          isLoading: false,
-          dataSource: responseJson.movies,
-        }, function(){
+      if (request.status === 200) {
+        console.log("success", request.responseText);
+      } else {
+        console.warn("error");
+      }
+    };
 
-        });
-
-      })
-      .catch((error) =>{
-        console.error(error);
-      });
+    request.open("GET", "https://facebook.github.io/react-native/movies.json");
+    //request.send();
   }
 
 
