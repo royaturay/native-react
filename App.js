@@ -1,43 +1,36 @@
 import React, { Component } from 'react';
-import { AppRegistry, ScrollView, Image, Text } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 
-
-export default class IScrolledDownAndWhatHappenedNextShockedMe extends Component {
+export default class FlatListBasics extends Component {
   render() {
-      return (
-        <ScrollView>
-          <Text style={{fontSize:96}}>Scroll me plz</Text>
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Text style={{fontSize:96}}>If you like</Text>
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Text style={{fontSize:96}}>Scrolling down</Text>
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Text style={{fontSize:96}}>What's the best</Text>
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Text style={{fontSize:96}}>Framework around?</Text>
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-          <Text style={{fontSize:80}}>React Native</Text>
-        </ScrollView>
+    return (
+      <View style={styles.container}>
+        <FlatList
+          data={[
+            {key: 'Devin', value: 'durant1'},
+            {key: 'Jackson', value: 'durant2'},
+            {key: 'James', value: 'durant3'},
+            {key: 'Joel', value: 'durant4'},
+            {key: 'John', value: 'durant5'},
+            {key: 'Jillian', value: 'durant6'},
+            {key: 'Jimmy', value: 'durant7'},
+            {key: 'Julie', value: 'durant8'},
+          ]}
+          renderItem={({item}) => <Text style={styles.item}>{item.key + ',' + item.value}</Text>}
+        />
+      </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+   flex: 1,
+   paddingTop: 22
+  },
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
+  },
+})
