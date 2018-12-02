@@ -9,21 +9,27 @@ export default class FetchExample extends React.Component {
   }
 
   componentDidMount(){
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = e => {
-      if (request.readyState !== 4) {
-        return;
-      }
+    var ws = new WebSocket("ws://host.com/path");
 
-      if (request.status === 200) {
-        console.log("success", request.responseText);
-      } else {
-        console.warn("error");
-      }
+    ws.onopen = () => {
+      // connection opened
+      ws.send("something"); // send a message
     };
 
-    request.open("GET", "https://facebook.github.io/react-native/movies.json");
-    //request.send();
+    ws.onmessage = e => {
+      // a message was received
+      console.log(e.data);
+    };
+
+    ws.onerror = e => {
+      // an error occurred
+      console.log(e.message);
+    };
+
+    ws.onclose = e => {
+      // connection closed
+      console.log(e.code, e.reason);
+    };
   }
 
 
