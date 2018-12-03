@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Platform, Image, StyleSheet, FlatList, Text, View } from "react-native";
 
+const BigButton = require("./button");
+
 var REQUEST_URL =
   "https://raw.githubusercontent.com/facebook/react-native/0.51-stable/docs/MoviesExample.json";
 
