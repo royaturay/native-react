@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, StyleSheet, FlatList, Text, View } from "react-native";
+import { Platform, Image, StyleSheet, FlatList, Text, View } from "react-native";
 
 var REQUEST_URL =
   "https://raw.githubusercontent.com/facebook/react-native/0.51-stable/docs/MoviesExample.json";
@@ -103,10 +103,36 @@ var styles = StyleSheet.create({
   },
   thumbnail: {
     width: 53,
-    height: 81
+    ...Platform.select({
+      ios: {
+        height: 81
+      },
+      android: {
+        height: 51
+      }
+    })
   },
   list: {
-    paddingTop: 20,
+    paddingTop: Platform.OS === "ios" ? 20 : 10,  //Platform.OS在 iOS 上会返回ios
     backgroundColor: '#F5FCFF',
   }
 });
+
+// //针对不同平台返回不同的组件
+// const Component = Platform.select({
+//   ios: () => require("ComponentIOS"),
+//   android: () => require("ComponentAndroid")
+// })();
+
+// <Component />;
+
+// Android 版本
+if (Platform.Version === 25) {
+  console.log("Running on Nougat!");
+}
+
+// iOS 版本 Platform.Version => 10.3
+const majorVersionIOS = parseInt(Platform.Version, 10);
+if (majorVersionIOS <= 9) {
+  console.log("Work around a change in behavior");
+}
